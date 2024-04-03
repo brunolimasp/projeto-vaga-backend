@@ -35,6 +35,6 @@ app.add_middleware(
 )
 
 
-# ------------------------------------Inclusão das rotas------------------
+# --------------------------------Inclusão das rotas--------------------------------
 app.include_router(department_router, prefix="/department", tags=["department"])
 app.include_router(employee_router, prefix="/employee", tags=["employee"])
