@@ -1,45 +1,40 @@
 # ACMEVita
 
-Projeto de modelagem de dados e criação de uma API utilizando Python e qualquer framework de sua escolha (Flask, FastAPI, Django etc).
 
-**Este projeto é parte do processo de seleção de desenvolvedor backend da [Telavita](https://telavita.com.br).**
+O projeto da ACMEVita foi construído com FastAPI devido à sua facilidade e agilidade na criação de APIs, juntamente com sua documentação automática utilizando recursos da OpenAPI como Swagger e Redoc. Para armazenar os dados, optei pelo Postgres devido à sua estabilidade, solidez e ampla adoção no mercado.
 
-## Sobre o projeto
+## Instruções e Requisitos
 
-A ACMEVita está expandindo seus negócios e precisa de um sistema para gerenciar seus departamentos, colaboradores e dependentes.
 
-O seu único desenvolvedor backend está de ferias, você foi recrutado para finalizar este projeto, boa sorte!
+- Certifique-se de ter o Docker instalado em seu ambiente. Se ainda não o tiver, você pode baixá-lo e instalá-lo a partir do site oficial: Docker.
 
-### Requisitos
+- Após instalar o Docker, abra um terminal ou prompt de comando.
 
-#### Como um Usuário da API eu gostaria de consultar todos os departamentos para visualizar a organização da ACMEVita.
+- Navegue até o diretório raiz do projeto onde está localizado o arquivo docker-compose.yml.
 
-* Cada departamento deve possuir um *nome do departamento*.
-* A API deve responder com uma listagem de departamentos no formato JSON informando o *nome do departamento* de cada departamento.
+- Execute o seguinte comando:
 
-#### Como um Usuário da API eu gostaria de consultar todos os colaboradores de um departamento para visualizar a organização da ACMEVita.
 
-* Cada colaborador deve possuir um *nome completo*.
-* Cada colaborador deve pertencer a *um* departamento.
-* Cada colaborador pode possuir *nenhum, um ou mais* dependententes.
-* A API deve responder com uma listagem de colaboradores do departamento no formato JSON informando o *nome completo* de cada colaborador e a respectiva flag booleana `have_dependents` caso o colaborador possua *um ou mais dependentes*.
+```cmd
+docker-compose up -d
+```
 
-### Diferenciais
+- Aguarde até que o Docker baixe as imagens, construa os contêineres e inicie o serviço.
 
-* Testes unitários
-* Referência (Swagger ou similar)
-* Documentação e instruções de configuração
-* Separação das camadas de responsabilidade (modelagem de dados, serialização, regras de negócio, etc)
-* Conteinerização
+- Uma vez que o serviço esteja em execução, você poderá acessar a documentação das API´s pelo Swagger ou Redocs através das rotas: http://127.0.0.1:8000/redoc  ou http://127.0.0.1:8000/docs para acessar o banco de dadados é possivel fazer acesso pelo PGadmin na rota http://localhost:16543/
 
-### Instruções
+- As credenciais para acesso ao banco estão no arquivo `.env`
 
-1. Faça um _fork_ ou download deste projeto.
-2. Trabalhe localmente no seu projeto, faça até o ponto que conseguir.
-3. Você está livre para organizar a estrutura do projeto como preferir.
-4. Você deve utilizar o framework escolhido para criar os endpoints da API.
-5. Você pode utilizar a ORM de sua preferência para modelagem de dados.
-6. Suba o seu projeto para o GitHub e habilite a funcionalidade de Issues.
-7. Nos envie o link para o seu projeto, **mesmo que não esteja finalizado!**
+### Testes unitários
+Neste projeto, utilizamos a biblioteca pytest para realizar testes nos endpoints da nossa aplicação. Os testes são uma parte fundamental do desenvolvimento de software, pois garantem que o código funcione corretamente em diferentes cenários e situações.
 
-**Qualquer dúvida, [entre em contato](mailto:jc@telavita.com.br)!**
+Para realizar os testes nos endpoints, é necessário que o banco de dados esteja rodando, pois os testes irão comparar as respostas dos endpoints com os dados armazenados no banco de dados. Isso nos permite verificar se os endpoints estão retornando as respostas esperadas de acordo com os dados fornecidos.
+
+Para executar os testes, basta rodar o seguinte comando no terminal, na pasta raiz do projeto
+
+```cmd
+pytest ./src/
+```
+### Observações
+
+Ao iniciar a aplicação através do Docker Compose, as tabelas serão criadas automaticamente e dados fictícios serão inseridos. Isso simula o funcionamento da aplicação em um ambiente de testes ou desenvolvimento, proporcionando uma experiência prática e realista para fins de avaliação e desenvolvimento.
